@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function NameForm({ numPlayers, onSubmit }) {
+function NameForm({ onSubmit, numPlayers }) {
   const [player1Name, setPlayer1Name] = useState('');
   const [player2Name, setPlayer2Name] = useState('');
 
@@ -13,25 +13,27 @@ function NameForm({ numPlayers, onSubmit }) {
     <div>
       <h2>Enter player names:</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Player 1:
-          <input
-            type="text"
-            value={player1Name}
-            onChange={(event) => setPlayer1Name(event.target.value)}
-          />
-        </label>
+        <label htmlFor="player1">Player 1:</label>
+        <input
+          type="text"
+          id="player1"
+          value={player1Name}
+          onChange={(event) => setPlayer1Name(event.target.value)}
+        />
         {numPlayers === 2 && (
-          <label>
-            Player 2:
+          <>
+            <br />
+            <label htmlFor="player2">Player 2:</label>
             <input
               type="text"
+              id="player2"
               value={player2Name}
               onChange={(event) => setPlayer2Name(event.target.value)}
             />
-          </label>
+          </>
         )}
-        <button type="submit">Start Game</button>
+        <br />
+        <button>Start Game</button>
       </form>
     </div>
   );
