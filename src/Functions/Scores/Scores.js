@@ -9,7 +9,7 @@
  */
 const Scores = (user1, user2)=>{
     const OPTIONS = ["rock", "paper", "scissor"]
-    if(!OPTIONS.includes(user1)|| !OPTIONS.includes(user2)){
+    if(!OPTIONS.includes(user1) || !OPTIONS.includes(user2)){
         throw new Error("option should be either 'rock' or 'paper' or 'scissor")
     }
     if(user1 === user2){

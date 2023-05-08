@@ -11,10 +11,7 @@ describe("Calculate the score",() => {
         expect(draw).toBe("draw")
     })
 
-    test("should determine the argument are declared in the function",()=>{
-        
-    })
-
+    
     test.each([
         ["scissor","rock","fail"],
         ["scissor","paper","win"],
@@ -26,5 +23,12 @@ describe("Calculate the score",() => {
         const forUser1 = Scores(user1, user2) 
         expect(forUser1).toBe(result)
     })
+    
+    test("should determine the argument are declared in the function",()=>{
+        const user1 = "scissors"
+        const user2 = "scissor"
 
+        expect(()=> Scores(user1, user2)).toThrowError("option should be either 'rock' or 'paper' or 'scissor")
+
+    })
 })
