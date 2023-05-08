@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import generateComputerChoice from "./Functions/ComputerChoice/generateComputerChoice";
+import Scores from "./Functions/Scores/Scores";
 import "./App.css";
 
 function Gameplay({player1Name}) {
@@ -8,18 +10,14 @@ function Gameplay({player1Name}) {
   const [userScore, setUserScore] = useState(null);
   const [computerScore, setComputerScore] = useState(null);
   const [roundsPlayed, setRoundsPlayed] = useState(0);
-  const choices = ["rock", "paper", "scissors"];
+  const choices = ["rock", "paper", "scissor"];
 
   const handleClick = (value) => {
     setRoundsPlayed(roundsPlayed + 1);
     setUserChoice(value);
-    generateComputerChoice();
+    setComputerChoice(()=>generateComputerChoice(choices));
   };
-
-  const generateComputerChoice = () => {
-    const randomChoice = choices[Math.floor(Math.random() * choices.length)];
-    setComputerChoice(randomChoice);
-  };
+  
 
   useEffect(() => {
     if (userChoice && computerChoice) {
@@ -27,7 +25,9 @@ function Gameplay({player1Name}) {
     }
   }, [userChoice, computerChoice]);
 
-  const checkResult = () => {
+
+
+ /*  const checkResult = () => {
     switch (userChoice + computerChoice) {
       case "scissorspaper":
       case "rockscissors":
@@ -46,6 +46,18 @@ function Gameplay({player1Name}) {
       case "scissorsscissors":
         setResult("ITS A DRAW");
         break;
+    }
+  }; */
+  const checkResult = () => {
+    const user = Scores(userChoice, computerChoice)
+    if(user === "win"){
+      setResult("You WIN")
+      setUserScore(userScore + 1);
+    }else if(user === "fail"){
+      setResult("YOU LOSE");
+      setComputerScore(computerScore + 1);
+    }else{
+      setResult("ITS A DRAW");
     }
   };
 
