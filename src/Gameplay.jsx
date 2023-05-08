@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-function Gameplay() {
+function Gameplay({player1Name}) {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
@@ -54,11 +54,11 @@ function Gameplay() {
           {choice}
         </button>
       ))}
-      <h2>User choise is: {userChoice} </h2>
+      <h2>{player1Name} choise is: {userChoice} </h2>
       <h2>Computer choise is: {computerChoice} </h2>
 
       <h2>{result}</h2>
-      <h2>User score: {userScore}</h2>
+      <h2>{player1Name} score: {userScore}</h2>
       <h2>Computer score: {computerScore}</h2>
     </div>
   );
