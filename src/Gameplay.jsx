@@ -7,9 +7,11 @@ function Gameplay({player1Name}) {
   const [result, setResult] = useState(null);
   const [userScore, setUserScore] = useState(null);
   const [computerScore, setComputerScore] = useState(null);
+  const [roundsPlayed, setRoundsPlayed] = useState(0);
   const choices = ["rock", "paper", "scissors"];
 
   const handleClick = (value) => {
+    setRoundsPlayed(roundsPlayed + 1);
     setUserChoice(value);
     generateComputerChoice();
   };
@@ -60,6 +62,7 @@ function Gameplay({player1Name}) {
       <h2>{result}</h2>
       <h2>{player1Name} score: {userScore}</h2>
       <h2>Computer score: {computerScore}</h2>
+      <h2>Number of rounds played: {roundsPlayed}</h2>
     </div>
   );
 }
