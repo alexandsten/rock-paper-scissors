@@ -3,4 +3,4 @@ const ManageGame = ()=>{
 
 }
 
-export default MangeGame
+export default ManageGame
