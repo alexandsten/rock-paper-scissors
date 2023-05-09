@@ -7,24 +7,48 @@ function Gameplay({player1Name, player2Name}) {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
-  const [userScore, setUserScore] = useState(null);
-  const [computerScore, setComputerScore] = useState(null);
+  const [userScore, setUserScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
   const [roundsPlayed, setRoundsPlayed] = useState(0);
+  const [gameResults, setGameResults] = useState([]);
   const choices = ["rock", "paper", "scissor"];
 
-  const handleClick = (value) => {
-    setRoundsPlayed(roundsPlayed + 1);
-    setUserChoice(value);
-    setComputerChoice(()=>generateComputerChoice(choices));
-  };
+  
+  
+  
   
 
-  useEffect(() => {
-    if (userChoice && computerChoice) {
-      checkResult();
-    }
-  }, [userChoice, computerChoice]);
+const handleClick = (value) => {
+  setRoundsPlayed(roundsPlayed + 1);
+  setUserChoice(value);
+};
 
+useEffect(() => {
+  setComputerChoice(generateComputerChoice(choices));
+}, []);
+
+useEffect(() => {
+  if (userChoice && computerChoice) {
+    console.log('userChoice:', userChoice);
+    console.log('computerChoice:', computerChoice);
+    const newResult = checkResult(userChoice, computerChoice);
+    console.log('newResult:', newResult);
+    setResult(newResult);
+  }
+}, [userChoice, computerChoice]);
+
+useEffect(() => {
+  if (userChoice && computerChoice && result !== null) {
+    const Listresult = {
+      player1Name: player1Name,
+      userChoice: userChoice,
+      computerChoice: computerChoice,
+      result: result
+    };
+    console.log('newResult:', Listresult);
+    setGameResults([...gameResults, Listresult]);
+  }
+}, [result]);
 
 
  /*  const checkResult = () => {
@@ -49,17 +73,18 @@ function Gameplay({player1Name, player2Name}) {
     }
   }; */
   const checkResult = () => {
-    const user = Scores(userChoice, computerChoice)
-    if(user === "win"){
-      setResult("You WIN")
+    const user = Scores(userChoice, computerChoice);
+    if (user === 'win') {
       setUserScore(userScore + 1);
-    }else if(user === "fail"){
-      setResult("YOU LOSE");
+      return `${player1Name} WIN`;
+    } else if (user === 'fail') {
       setComputerScore(computerScore + 1);
-    }else{
-      setResult("ITS A DRAW");
+      return `${player2Name} WIN`;
+    } else {
+      return 'ITS A DRAW';
     }
   };
+  
 
   return (
     <div>
@@ -68,13 +93,37 @@ function Gameplay({player1Name, player2Name}) {
           {choice}
         </button>
       ))}
-      <h2>{player1Name} choise is: {userChoice} </h2>
-      <h2>{player2Name} is: {computerChoice} </h2>
-
+     
+     {userChoice && computerChoice && result && (
+      <div id="choisedive">
+ 
+    <p>{player1Name} chose: {userChoice}</p>
+    <p>{player2Name} chose: {computerChoice}</p>
+   
+      </div>
+)}
       <h2>{result}</h2>
-      <h2>{player1Name} score: {userScore}</h2>
-      <h2>{player2Name} : {computerScore}</h2>
-      <h2>Number of rounds played: {roundsPlayed}</h2>
+      <h2>{player1Name} score: {userScore} : {player2Name} {computerScore}</h2>
+      <strong>Number of rounds played: {roundsPlayed}</strong>
+      
+      {gameResults.length > 0 && (
+      <>
+        <h2>Game Results:</h2>
+        
+        {gameResults.length > 0 && (
+  <ul>
+    {gameResults.map((result, index) => (
+      <li key={index}>
+        {result.player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
+      </li>
+    ))}
+  </ul>
+)}
+
+        
+      </>
+    )}
+    
     </div>
   );
 }

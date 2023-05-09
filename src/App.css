@@ -59,3 +59,8 @@ body {
   justify-content: flex-start;
   flex-direction: column;
 }
+#choisedive{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
