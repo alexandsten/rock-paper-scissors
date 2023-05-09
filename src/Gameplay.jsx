@@ -54,43 +54,24 @@ useEffect(() => {
 }, [result]); */
 
 
- /*  const checkResult = () => {
-    switch (userChoice + computerChoice) {
-      case "scissorspaper":
-      case "rockscissors":
-      case "paperrock":
-        setResult("YOU WIN!");
-        setUserScore(userScore + 1);
-        break;
-      case "paperscissors":
-      case "scissorsrock":
-      case "rockpaper":
-        setResult("YOU LOSE");
-        setComputerScore(computerScore + 1);
-        break;
-      case "rockrock":
-      case "paperpaper":
-      case "scissorsscissors":
-        setResult("ITS A DRAW");
-        break;
-    }
-  }; */
+
 
   useEffect(()=>{
     if(player2Name == null){
       if(user1Choice && computerChoice){
         const newresult = checkResult(user1Choice, computerChoice)
-        cal(newresult)
+        const result =cal(newresult)
+        history(user1Choice, computerChoice, result)
        
       }
     }
   
     if(user1Choice && user2Choice){
       const results = checkResult(user1Choice, user2Choice)
-      cal(results)
-     
+      const result =cal(results)
+     history(user1Choice, user2Choice, result)
     }
-  },[result, user1Choice, user2Choice])
+  },[ user1Choice, user2Choice])
 
  /*  const checkResult = () => {
     const user = Scores(userChoice, computerChoice);
@@ -110,7 +91,6 @@ useEffect(() => {
 
 
   const handleClick = (player, value) => {
-    setRoundsPlayed(roundsPlayed + 1);
     setComputerChoice(generateComputerChoice(choices));
     if(player1Name == player){
       setUser1Choice(value);
@@ -125,29 +105,49 @@ useEffect(() => {
 const reset = ()=>{
   setUser1Choice(null)
   setUser2Choice(null)
+  setResult(null)
 }
 
   const cal = (user1)=>{
+    setRoundsPlayed(roundsPlayed + 1);
+
     if(user1 === "win"){
       setResult(()=>`${player1Name} WIN`)
       setUser1Score(user1Score + 1);
+      return `${player1Name} WIN`
     }else if(user1 === "fail"){
       if(player2Name !== null){
         setResult(()=> `${player2Name} WIN`)
         setUser2Score(user2Score + 1);
+        return `${player2Name} WIN`
       }else{
         setResult(()=>"computer WIN")
         setComputerScore(computerScore + 1);
+       return `computer WIN`
       }
     }else{
       setResult(()=>"IT'S DRAW");
+      return "IT'S DRAW"
     }
-  }
+
+
+
+  }//of cal
 
   const checkResult = (user1, user2) => {
         const user = Scores(user1, user2)
         return user
   };
+
+  const history = (user1, user2, result) => {
+    const Listresult = {
+      userChoice: user1,
+      computerChoice: user2,
+      result: result
+    };
+    console.log('newResult:', Listresult);
+    setGameResults([...gameResults, Listresult]);
+  }
   
 
   const PlayerChoice =(player)=> <>
@@ -195,8 +195,8 @@ const reset = ()=>{
    
       </div>
 )} */}
-      <h2>{result}</h2>
-      <h2>{player1Name} score: {userScore} : {player2Name} {computerScore}</h2>
+      <h2>{result}</h2><span>{ result && <button onClick={reset}>Play again!</button>}</span>
+      <h2>{player1Name} score: {user1Score} : {player2Name} {user2Score}</h2>
       <strong>Number of rounds played: {roundsPlayed}</strong>
       
       {gameResults.length > 0 && (
