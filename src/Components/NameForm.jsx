@@ -6,7 +6,31 @@ function NameForm({ onSubmit, numPlayers }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onSubmit(player1Name, player2Name);
+    if (numPlayers == 2){
+    if (player1Name  == ""){
+      alert("You need to pass a name1")
+    } 
+    else if (player2Name  == ""){
+      alert("You need to pass a name2")
+      
+    }else{
+
+      onSubmit(player1Name, player2Name);
+    }
+  }
+  else if(numPlayers == 1){
+    if (player1Name  == ""){
+      alert("You need to pass a name1")
+    } 
+    else{
+
+      onSubmit(player1Name, player2Name);
+    }
+  }
+  else {
+    alert("ERRROR")
+  }
+
   }
 
   return (
