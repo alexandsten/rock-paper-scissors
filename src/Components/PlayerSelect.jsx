@@ -11,8 +11,8 @@ function PlayerSelect({ onSelect }) {
   return (
     <div>
       <h2>Select number of players:</h2>
-      <button onClick={() => handleSelect(1)}>1 Player</button>
-      <button onClick={() => handleSelect(2)}>2 Players</button>
+      <button data-id="player1-btn" onClick={() => handleSelect(1)}>1 Player</button>
+      <button data-id="player2-btn" onClick={() => handleSelect(2)}>2 Players</button>
     </div>
   );
 }

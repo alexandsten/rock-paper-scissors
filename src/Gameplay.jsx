@@ -157,6 +157,7 @@ const reset = ()=>{
       <button
         key={index}
         name={player}
+        id={choice}
         onClick={() => handleClick(player, choice)}
       >
         {choice}
@@ -195,9 +196,9 @@ const reset = ()=>{
    
       </div>
 )} */}
-      <h2>{result}</h2><span>{ result && <button onClick={reset}>Play again!</button>}</span>
+      <h2>{result}</h2><span>{ result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
       <h2>{player1Name} score: {user1Score} : {player2Name} {user2Score}</h2>
-      <strong>Number of rounds played: {roundsPlayed}</strong>
+      <strong id="num_round_played">Number of rounds played: {roundsPlayed}</strong>
       
       {gameResults.length > 0 && (
       <>
