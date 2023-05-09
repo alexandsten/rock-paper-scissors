@@ -44,7 +44,7 @@ function App() {
             onStart={handleStartGame}
           />
         )}
-        {numPlayers === 1 && gameStarted && <Gameplay player1Name={player1Name} player2Name={"Computer"}/>}
+        {numPlayers === 1 && gameStarted && <Gameplay player1Name={player1Name} player2Name={null}/>}
         {numPlayers === 2 && gameStarted && <Gameplay player1Name={player1Name} player2Name={player2Name}/>}
       </div>
     </localData.Provider>
