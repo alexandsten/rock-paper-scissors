@@ -19,7 +19,16 @@ function Gameplay({player1Name, player2Name}) {
   
   
   
+  const handlePlayer2Name = (player2Name) => {
+    if(player2Name == null){
+      return "computer"
+    } else {
+      return player2Name
+    }
+  };
   
+ 
+  const updatedPlayer2Name = handlePlayer2Name(player2Name);
 
 /* const handleClick = (value) => {
   setRoundsPlayed(roundsPlayed + 1);
@@ -58,12 +67,14 @@ useEffect(() => {
 
   useEffect(()=>{
     if(player2Name == null){
+      
       if(user1Choice && computerChoice){
         const newresult = checkResult(user1Choice, computerChoice)
         const result =cal(newresult)
         history(user1Choice, computerChoice, result)
        
       }
+      
     }
   
     if(user1Choice && user2Choice){
@@ -196,26 +207,25 @@ const reset = ()=>{
       </div>
 )} */}
       <h2>{result}</h2><span>{ result && <button onClick={reset}>Play again!</button>}</span>
-      <h2>{player1Name} score: {user1Score} : {player2Name} {user2Score}</h2>
+      <h2>{player1Name} score: {user1Score} : {updatedPlayer2Name} {user2Score}</h2>
       <strong>Number of rounds played: {roundsPlayed}</strong>
       
       {gameResults.length > 0 && (
-      <>
-        <h2>Game Results:</h2>
-        
-        {gameResults.length > 0 && (
-  <ul>
-    {gameResults.map((result, index) => (
-      <li key={index}>
-        {result.player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
-      </li>
-    ))}
-  </ul>
+  <>
+    <h2>Game Results:</h2>
+    <ul>
+      {gameResults.slice(-10).map((result, index) => (
+        <li key={index}>
+          {player1Name} chose {result.userChoice}, {updatedPlayer2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
+        </li>
+      ))}
+    </ul>
+  </>
 )}
 
         
-      </>
-    )}
+      
+   
     
       {/* <div>
         {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
