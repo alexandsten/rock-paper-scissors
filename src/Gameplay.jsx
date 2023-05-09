@@ -3,7 +3,7 @@ import generateComputerChoice from "./Functions/ComputerChoice/generateComputerC
 import Scores from "./Functions/Scores/Scores";
 import "./App.css";
 
-function Gameplay({player1Name}) {
+function Gameplay({player1Name, player2Name}) {
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
@@ -69,11 +69,11 @@ function Gameplay({player1Name}) {
         </button>
       ))}
       <h2>{player1Name} choise is: {userChoice} </h2>
-      <h2>Computer choise is: {computerChoice} </h2>
+      <h2>{player2Name} is: {computerChoice} </h2>
 
       <h2>{result}</h2>
       <h2>{player1Name} score: {userScore}</h2>
-      <h2>Computer score: {computerScore}</h2>
+      <h2>{player2Name} : {computerScore}</h2>
       <h2>Number of rounds played: {roundsPlayed}</h2>
     </div>
   );
