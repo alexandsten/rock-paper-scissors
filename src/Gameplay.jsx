@@ -3,7 +3,7 @@ import generateComputerChoice from "./Functions/ComputerChoice/generateComputerC
 import Scores from "./Functions/Scores/Scores";
 import "./App.css";
 
-function Gameplay({player1Name, player2Name}) {
+function Gameplay({ player1Name, player2Name }) {
   const [user1Choice, setUser1Choice] = useState(null);
   const [user2Choice, setUser2Choice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
@@ -18,76 +18,76 @@ function Gameplay({player1Name, player2Name}) {
 
   const [buttonsVisible, setButtonsVisible] = useState(true)
 
+
+
+
+
+
+  /* const handleClick = (value) => {
+    setRoundsPlayed(roundsPlayed + 1);
+    setUserChoice(value);
+  }; */
+
+  useEffect(() => {
+    setComputerChoice(generateComputerChoice(choices));
+  }, []);
+
+  /* useEffect(() => {
+    if (userChoice && computerChoice) {
+      console.log('userChoice:', userChoice);
+      console.log('computerChoice:', computerChoice);
+      const newResult = checkResult(userChoice, computerChoice);
+      console.log('newResult:', newResult);
+      setResult(newResult);
+    }
+  }, [userChoice, computerChoice]);
   
-  
-  
-  
-
-/* const handleClick = (value) => {
-  setRoundsPlayed(roundsPlayed + 1);
-  setUserChoice(value);
-}; */
-
-useEffect(() => {
-  setComputerChoice(generateComputerChoice(choices));
-}, []);
-
-/* useEffect(() => {
-  if (userChoice && computerChoice) {
-    console.log('userChoice:', userChoice);
-    console.log('computerChoice:', computerChoice);
-    const newResult = checkResult(userChoice, computerChoice);
-    console.log('newResult:', newResult);
-    setResult(newResult);
-  }
-}, [userChoice, computerChoice]);
-
-useEffect(() => {
-  if (userChoice && computerChoice && result !== null) {
-    const Listresult = {
-      player1Name: player1Name,
-      userChoice: userChoice,
-      computerChoice: computerChoice,
-      result: result
-    };
-    console.log('newResult:', Listresult);
-    setGameResults([...gameResults, Listresult]);
-  }
-}, [result]); */
+  useEffect(() => {
+    if (userChoice && computerChoice && result !== null) {
+      const Listresult = {
+        player1Name: player1Name,
+        userChoice: userChoice,
+        computerChoice: computerChoice,
+        result: result
+      };
+      console.log('newResult:', Listresult);
+      setGameResults([...gameResults, Listresult]);
+    }
+  }, [result]); */
 
 
 
 
-  useEffect(()=>{
-    if(player2Name == null || player2Name == "_computer_"){
-      if(user1Choice && computerChoice){
+  useEffect(() => {
+    if (player2Name == null || player2Name == "_computer_") {
+      if (user1Choice && computerChoice) {
         const newresult = checkResult(user1Choice, computerChoice)
-        const result =cal(newresult)
+        const result = cal(newresult)
         history(user1Choice, computerChoice, result)
-       
-      }
-      
-    }
-  
-    if(user1Choice && user2Choice){
-      const results = checkResult(user1Choice, user2Choice)
-      const result =cal(results)
-     history(user1Choice, user2Choice, result)
-    }
-  },[ user1Choice, user2Choice])
 
- /*  const checkResult = () => {
-    const user = Scores(userChoice, computerChoice);
-    if (user === 'win') {
-      setUserScore(userScore + 1);
-      return `${player1Name} WIN`;
-    } else if (user === 'fail') {
-      setComputerScore(computerScore + 1);
-      return `${player2Name} WIN`;
-    } else {
-      return 'ITS A DRAW';
+      }
+
     }
-  } */
+
+    if (user1Choice && user2Choice) {
+      const results = checkResult(user1Choice, user2Choice)
+      const result = cal(results)
+      history(user1Choice, user2Choice, result)
+    }
+  }, [user1Choice, user2Choice])
+
+  /*  const checkResult = () => {
+     const user = Scores(userChoice, computerChoice);
+     if (user === 'win') {
+       setUserScore(userScore + 1);
+       return `${player1Name} WIN`;
+     } else if (user === 'fail') {
+       setComputerScore(computerScore + 1);
+       return `${player2Name} WIN`;
+     } else {
+       return 'ITS A DRAW';
+     }
+   } */
 
 
 
@@ -95,42 +95,42 @@ useEffect(() => {
 
   const handleClick = (player, value) => {
     setComputerChoice(generateComputerChoice(choices));
-    if(player1Name == player){
+    if (player1Name == player) {
       setUser1Choice(value);
     }
-    if(player2Name == player){
+    if (player2Name == player) {
       setUser2Choice(value);
     }
-    
-    
-  }; 
 
-const reset = ()=>{
-  setUser1Choice(null)
-  setUser2Choice(null)
-  setResult(null)
-  setButtonsVisible(true)
-}
 
-  const cal = (user1)=>{
+  };
+
+  const reset = () => {
+    setUser1Choice(null)
+    setUser2Choice(null)
+    setResult(null)
+    setButtonsVisible(true)
+  }
+
+  const cal = (user1) => {
     setRoundsPlayed(roundsPlayed + 1);
     setButtonsVisible(false)
-    if(user1 === "win"){
-      setResult(()=>`${player1Name} WIN`)
+    if (user1 === "win") {
+      setResult(() => `${player1Name} WIN`)
       setUser1Score(user1Score + 1);
       return `${player1Name} WIN`
-    }else if(user1 === "fail"){
-      if(player2Name !== null){
-        setResult(()=> `${player2Name} WIN`)
+    } else if (user1 === "fail") {
+      if (player2Name !== null) {
+        setResult(() => `${player2Name} WIN`)
         setUser2Score(user2Score + 1);
         return `${player2Name} WIN`
-      }else{
-        setResult(()=>"computer WIN")
+      } else {
+        setResult(() => "computer WIN")
         setComputerScore(computerScore + 1);
-       return `computer WIN`
+        return `computer WIN`
       }
-    }else{
-      setResult(()=>"IT'S DRAW");
+    } else {
+      setResult(() => "IT'S DRAW");
       return "IT'S DRAW"
     }
 
@@ -139,8 +139,8 @@ const reset = ()=>{
   }//of cal
 
   const checkResult = (user1, user2) => {
-        const user = Scores(user1, user2)
-        return user
+    const user = Scores(user1, user2)
+    return user
   };
 
   const history = (user1, user2, result) => {
@@ -152,50 +152,50 @@ const reset = ()=>{
     console.log('newResult:', Listresult);
     setGameResults([...gameResults, Listresult]);
   }
-  
 
-  const PlayerChoice =(player)=> <>
- 
+
+  const PlayerChoice = (player) => <>
+
     <p>{player} turn</p>
-  {
-    roundsPlayed == 10 ? 
+    {
+      roundsPlayed == 10 ?
 
-    <p>You have played 10 rounds</p>
-    
+        <p>You have played 10 rounds</p>
 
-    :
 
-  buttonsVisible == true ?
-    choices.map((choice, index) =>
-      <button
-        key={index}
-        name={player}
-        id={choice}
-        onClick={() => handleClick(player, choice)}
-      >
-        {choice}
-      </button>
-    )
-    :
-    <p> </p>
-  
+        :
+
+        buttonsVisible == true ?
+          choices.map((choice, index) =>
+            <button
+              key={index}
+              name={player}
+              id={choice}
+              onClick={() => handleClick(player, choice)}
+            >
+              {choice}
+            </button>
+          )
+          :
+          <p> </p>
+
     }
   </>
 
 
-  const forTwoPlayers = ()=>{
-    if(user1Choice == null){
+  const forTwoPlayers = () => {
+    if (user1Choice == null) {
       return PlayerChoice(player1Name)
     }
-    else if(user1Choice !== null){
+    else if (user1Choice !== null) {
       return PlayerChoice(player2Name)
     }
   }
 
- 
+
   return (
     <div>
-      <a href="App">Back</a>
+   
       {/* {choices.map((choice, index) => (
         <button key={index} onClick={() => handleClick(choice)}>
           {choice}
@@ -204,59 +204,35 @@ const reset = ()=>{
       <div>
         {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
       </div>
-     
-    {/*  {userChoice && computerChoice && result && (
-      <div id="choisedive">
- 
-    <p>{player1Name} chose: {userChoice}</p>
-    <p>{player2Name} chose: {computerChoice}</p>
-   
-      </div>
-)} */}
-      <h2>{result}</h2><span>{ result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
-      <h2>{player1Name} score: {user1Score} </h2> 
-      <h2>{player2Name} score: {user2Score}</h2> 
+
+      {/* {userChoice && computerChoice && result && (
+        <div id="choisedive">
+          <p>{player1Name} chose: {userChoice}</p>
+          <p>{player2Name} chose: {computerChoice}</p>
+        </div>
+      )} */}
+      <h2>{result}</h2>
+      <span>{result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
+      <h2>{player1Name} score: {user1Score} </h2>
+      <h2>{player2Name} score: {user2Score}</h2>
       <strong id="num_round_played">Number of rounds played: {roundsPlayed}</strong>
-      
+      <h2>Game Results:</h2>
+      <ul id="gameplayhistory">
+
       {gameResults.length > 0 && (
-      <>
-        <h2>Game Results:</h2>
-        
-        {gameResults.length > 0 && (
-  <ul>
-    {gameResults.map((result, index) => (
-      <li key={index}>
-        {player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
-      </li>
-    ))}
-  </ul>
-)}
-
-        
-      
-   
-    
-      {/* <div>
-        {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
-      </div>
-      <h2>
-        {player1Name} choise is: {user1Choice}{" "}
-      </h2>
-      <h2>
-        {player2Name !== null ? player2Name : "computer"} is:{" "}
-        {player2Name !== null ? user2Choice : computerChoice}{" "}
-      </h2>
-
-       <h2>{result}</h2>
-      
-      <h2>
-        {player1Name} score: {user1Score}
-      </h2>
-      <h2>
-        {player2Name !== null ? player2Name : "computer"} Score:{" "}
-        {player2Name !== null ? user2Score : computerScore}{" "}
-      </h2>
-      <h2>Number of rounds played: {roundsPlayed}</h2> */}
+        <>
+          
+         
+            {gameResults.map((result, index) => (
+              <li key={index}>
+                {player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong>
+              </li>
+            ))}
+          
+        </>
+      )}
+      </ul>
+         <a href="App">Back</a>
     </div>
   );
 }

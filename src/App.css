@@ -4,7 +4,7 @@ body {
 }
 #root {
   width: 80vw;
-  height: 90vh;
+  min-height: 90vh;
 
   margin: 0 auto;
   
@@ -63,4 +63,12 @@ body {
   display: flex;
   flex-direction: row;
   gap: 40px;
+}
+#gameplayhistory{
+  border: 1px solid black;
+  list-style:decimal;
+  height: 35vh;
+  min-width: 60vh;
+  text-align: left;
+ 
 }
