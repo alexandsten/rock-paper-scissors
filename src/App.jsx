@@ -37,7 +37,7 @@ function App() {
        {numPlayers === 2 && gameStarted && <h1> {player1Name} VS {player2Name}</h1>}
         
        
-        {numPlayers === 1 && gameStarted && <Gameplay player1Name={player1Name} player2Name={null}/>}
+        {numPlayers === 1 && gameStarted && <Gameplay player1Name={player1Name} player2Name={"_computer_"}/>}
         {numPlayers === 2 && gameStarted && <Gameplay player1Name={player1Name} player2Name={player2Name}/>}
       </div>
     </localData.Provider>
