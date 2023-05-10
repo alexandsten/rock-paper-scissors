@@ -57,7 +57,7 @@ useEffect(() => {
 
 
   useEffect(()=>{
-    if(player2Name == null){
+    if(player2Name == null || player2Name == "_computer_"){
       if(user1Choice && computerChoice){
         const newresult = checkResult(user1Choice, computerChoice)
         const result =cal(newresult)
@@ -179,6 +179,7 @@ const reset = ()=>{
  
   return (
     <div>
+      <a href="App">Back</a>
       {/* {choices.map((choice, index) => (
         <button key={index} onClick={() => handleClick(choice)}>
           {choice}
@@ -197,7 +198,8 @@ const reset = ()=>{
       </div>
 )} */}
       <h2>{result}</h2><span>{ result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
-      <h2>{player1Name} score: {user1Score} : {player2Name} {user2Score}</h2>
+      <h2>{player1Name} score: {user1Score} </h2> 
+      <h2>{player2Name} score: {user2Score}</h2> 
       <strong id="num_round_played">Number of rounds played: {roundsPlayed}</strong>
       
       {gameResults.length > 0 && (
@@ -208,7 +210,7 @@ const reset = ()=>{
   <ul>
     {gameResults.map((result, index) => (
       <li key={index}>
-        {result.player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
+        {player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong> 
       </li>
     ))}
   </ul>
