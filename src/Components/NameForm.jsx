@@ -57,7 +57,7 @@ function NameForm({ onSubmit, numPlayers }) {
           </>
         )}
         <br />
-        <button>Start Game</button>
+        <button id="start_game">Start Game</button>
       </form>
     </div>
   );
