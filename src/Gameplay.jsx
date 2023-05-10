@@ -16,6 +16,8 @@ function Gameplay({player1Name, player2Name}) {
   const [gameResults, setGameResults] = useState([]);
   const choices = ["rock", "paper", "scissor"];
 
+  const [buttonsVisible, setButtonsVisible] = useState(true)
+
   
   
   
@@ -106,11 +108,12 @@ const reset = ()=>{
   setUser1Choice(null)
   setUser2Choice(null)
   setResult(null)
+  setButtonsVisible(true)
 }
 
   const cal = (user1)=>{
     setRoundsPlayed(roundsPlayed + 1);
-
+    setButtonsVisible(false)
     if(user1 === "win"){
       setResult(()=>`${player1Name} WIN`)
       setUser1Score(user1Score + 1);
@@ -151,8 +154,10 @@ const reset = ()=>{
   
 
   const PlayerChoice =(player)=> <>
+ 
     <p>{player} turn</p>
   {
+  buttonsVisible == true ?
     choices.map((choice, index) =>
       <button
         key={index}
@@ -163,7 +168,10 @@ const reset = ()=>{
         {choice}
       </button>
     )
-  }
+    :
+    <p> </p>
+  
+    }
   </>
 
 
