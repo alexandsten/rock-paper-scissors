@@ -1,13 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {
   background-color: #f5f5f5;
   height: 100%;
+  padding: 0;
+  margin: 0 auto;
 }
 #root {
-  width: 80vw;
-  min-height: 90vh;
-
-  margin: 0 auto;
+  font-family: 'Press Start 2P', cursive;
   
+  background-image: url(https://t4.ftcdn.net/jpg/01/37/85/97/360_F_137859733_pXgeGB53l3VKrr0WxF3elF1E5Nuhs2DY.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 99vh;
+  padding: 0;
+
+ 
   text-align: center;
   display: flex;
   align-items: flex-start;
@@ -50,6 +57,7 @@ body {
   color: #888;
 }
 #container{
+  border-radius: 20px;
   border: 1px solid black;
   width: 100%;
   height: 100%;
@@ -64,6 +72,15 @@ body {
   flex-direction: row;
   gap: 40px;
 }
+#scorediv{
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+
+}
 #gameplayhistory{
   border: 1px solid black;
   list-style:decimal;
@@ -71,4 +88,50 @@ body {
   min-width: 60vh;
   text-align: left;
  
+}
+#playerselect{
+ 
+
+  border-radius: 10px;
+  background-image: url(https://img.freepik.com/premium-photo/retro-lines-grid-space-abstract-background-elegant-luxury-80s-90s-style-3d-illustration_510351-3019.jpg);
+  background-size: cover;
+ 
+  width: 60vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+ 
+}
+#btncontainer{
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#playerselecth1{
+  background: linear-gradient(45deg, #ff9900, #f2ff00, #ff3700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+}
+.playerSelectbtn{
+
+  font-size: 12px;
+  border-radius: 0;
+  width: 140px;
+  height: 50px;
+  background-image: linear-gradient(to bottom, rgb(229, 91, 23) , yellow);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+#landingpageimg{
+  
+  background-size: cover;
+
+   
+  width: 500px;
+  height: 400px;
 }

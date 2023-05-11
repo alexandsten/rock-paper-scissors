@@ -212,10 +212,15 @@ function Gameplay({ player1Name, player2Name }) {
         </div>
       )} */}
       <h2>{result}</h2>
-      <span>{result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
+      <div id="scorediv">
+
+     
+     
       <h2>{player1Name} score: {user1Score} </h2>
       <h2>{player2Name} score: {user2Score}</h2>
-      <strong id="num_round_played">Number of rounds played: {roundsPlayed}</strong>
+      </div>
+      <strong id="num_round_played">Round:{roundsPlayed}</strong>
+      <br/><span>{result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
       <h2>Game Results:</h2>
       <ul id="gameplayhistory">
 
@@ -232,7 +237,7 @@ function Gameplay({ player1Name, player2Name }) {
         </>
       )}
       </ul>
-         <a href="App">Back</a>
+         <a href="App">New game</a>
     </div>
   );
 }

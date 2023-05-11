@@ -29,6 +29,8 @@ function App() {
   return (
     <localData.Provider value={data} >
       <div id="container">
+
+        <h1 style={{fontSize: "35px", color:"black"}}>Rock,Papper,Scissor</h1 >
         {numPlayers === null && <PlayerSelect onSelect={handlePlayerSelect} />}
         {numPlayers !== null && player1Name === '' && player2Name === '' && (
           <NameForm onSubmit={handleNameSubmit} numPlayers={numPlayers} />
