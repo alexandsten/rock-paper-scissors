@@ -8,55 +8,17 @@ function Gameplay({ player1Name, player2Name }) {
   const [user2Choice, setUser2Choice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [result, setResult] = useState(null);
-  const [userScore, setUserScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [user1Score, setUser1Score] = useState(0);
   const [user2Score, setUser2Score] = useState(0);
   const [roundsPlayed, setRoundsPlayed] = useState(0);
   const [gameResults, setGameResults] = useState([]);
-  const choices = ["rock", "paper", "scissor"];
-
+  const choices = ["rock", "paper", "scissors"];
   const [buttonsVisible, setButtonsVisible] = useState(true)
-
-
-
-
-
-
-  /* const handleClick = (value) => {
-    setRoundsPlayed(roundsPlayed + 1);
-    setUserChoice(value);
-  }; */
 
   useEffect(() => {
     setComputerChoice(generateComputerChoice(choices));
   }, []);
-
-  /* useEffect(() => {
-    if (userChoice && computerChoice) {
-      console.log('userChoice:', userChoice);
-      console.log('computerChoice:', computerChoice);
-      const newResult = checkResult(userChoice, computerChoice);
-      console.log('newResult:', newResult);
-      setResult(newResult);
-    }
-  }, [userChoice, computerChoice]);
-  
-  useEffect(() => {
-    if (userChoice && computerChoice && result !== null) {
-      const Listresult = {
-        player1Name: player1Name,
-        userChoice: userChoice,
-        computerChoice: computerChoice,
-        result: result
-      };
-      console.log('newResult:', Listresult);
-      setGameResults([...gameResults, Listresult]);
-    }
-  }, [result]); */
-
-
-
 
   useEffect(() => {
     if (player2Name == null || player2Name == "_computer_") {
@@ -75,22 +37,6 @@ function Gameplay({ player1Name, player2Name }) {
       history(user1Choice, user2Choice, result)
     }
   }, [user1Choice, user2Choice])
-
-  /*  const checkResult = () => {
-     const user = Scores(userChoice, computerChoice);
-     if (user === 'win') {
-       setUserScore(userScore + 1);
-       return `${player1Name} WIN`;
-     } else if (user === 'fail') {
-       setComputerScore(computerScore + 1);
-       return `${player2Name} WIN`;
-     } else {
-       return 'ITS A DRAW';
-     }
-   } */
-
-
-
 
 
   const handleClick = (player, value) => {
@@ -136,7 +82,7 @@ function Gameplay({ player1Name, player2Name }) {
 
 
 
-  }//of cal
+  }//end of cal
 
   const checkResult = (user1, user2) => {
     const user = Scores(user1, user2)
@@ -155,16 +101,11 @@ function Gameplay({ player1Name, player2Name }) {
 
 
   const PlayerChoice = (player) => <>
-
     <p>{player} turn</p>
     {
       roundsPlayed == 10 ?
-
         <p>You have played 10 rounds</p>
-
-
         :
-
         buttonsVisible == true ?
           choices.map((choice, index) =>
             <button
@@ -195,49 +136,42 @@ function Gameplay({ player1Name, player2Name }) {
 
   return (
     <div>
-   
-      {/* {choices.map((choice, index) => (
-        <button key={index} onClick={() => handleClick(choice)}>
-          {choice}
-        </button>
-      ))} */}
       <div>
         {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
       </div>
 
-      {/* {userChoice && computerChoice && result && (
-        <div id="choisedive">
-          <p>{player1Name} chose: {userChoice}</p>
-          <p>{player2Name} chose: {computerChoice}</p>
-        </div>
-      )} */}
-      <h2>{result}</h2>
-      <div id="scorediv">
-
-     
-     
-      <h2>{player1Name} score: {user1Score} </h2>
-      <h2>{player2Name} score: {user2Score}</h2>
-      </div>
-      <strong id="num_round_played">Round:{roundsPlayed}</strong>
-      <br/><span>{result && <button id="play_again" onClick={reset}>Play again!</button>}</span>
+      <h2 id="winner">{result}</h2>
+      <span>
+        {result && (
+          <button id="play_again" onClick={reset}>
+            Play again!
+          </button>
+        )}
+      </span>
+      <h2 id="user1_score">
+        {player1Name} score: {user1Score}{" "}
+      </h2>
+      <h2 id="user2_score">
+        {player2Name} score: {user2Score}
+      </h2>
+      <strong id="num_round_played">
+        Number of rounds played: {roundsPlayed}
+      </strong>
       <h2>Game Results:</h2>
       <ul id="gameplayhistory">
-
-      {gameResults.length > 0 && (
-        <>
-          
-         
+        {gameResults.length > 0 && (
+          <>
             {gameResults.map((result, index) => (
-              <li key={index}>
-                {player1Name} chose {result.userChoice}, {player2Name} chose {result.computerChoice}, result:<strong> {result.result} </strong>
+              <li key={index} className="history_length">
+                {player1Name} chose {result.userChoice}, {player2Name} chose{" "}
+                {result.computerChoice}, result:
+                <strong > {result.result} </strong>
               </li>
             ))}
-          
-        </>
-      )}
+          </>
+        )}
       </ul>
-         <a href="App">New game</a>
+      <a href="App">Back</a>
     </div>
   );
 }
