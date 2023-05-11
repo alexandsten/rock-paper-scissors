@@ -2,7 +2,7 @@
 describe('The home page', () => {
 
   it("Should player against the computer",()=>{
-    cy.visit('http://127.0.0.1:5173/')
+    cy.visit('http://localhost:5173/')
     cy.get('[data-id="player1-btn"]').click()
     cy.get('#player1').type("richard")
     cy.get('#start_game').click()
