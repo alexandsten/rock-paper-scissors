@@ -14,6 +14,15 @@ describe('The home page', () => {
 
     cy.get('#num_round_played').should("contain", 1 )
 
+    cy.get('#paper').click()
+    cy.get('#play_again').click()
+    cy.get('#num_round_played').should("contain", 2 )
+
+    cy.get('#scissor').click()
+    cy.get('#play_again').click()
+    cy.get('#num_round_played').should("contain", 3)
+
+
 
   })
 })
