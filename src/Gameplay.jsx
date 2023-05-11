@@ -145,7 +145,7 @@ function Gameplay({ player1Name, player2Name }) {
         {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
       </div>
 
-      <h2>{result}</h2>
+      <h2 id="winner">{result}</h2>
       <span>
         {result && (
           <button id="play_again" onClick={reset}>
@@ -153,10 +153,10 @@ function Gameplay({ player1Name, player2Name }) {
           </button>
         )}
       </span>
-      <h2>
+      <h2 id="user1_score">
         {player1Name} score: {user1Score}{" "}
       </h2>
-      <h2>
+      <h2 id="user2_score">
         {player2Name} score: {user2Score}
       </h2>
       <strong id="num_round_played">
@@ -167,10 +167,10 @@ function Gameplay({ player1Name, player2Name }) {
         {gameResults.length > 0 && (
           <>
             {gameResults.map((result, index) => (
-              <li key={index}>
+              <li key={index} className="history_length">
                 {player1Name} chose {result.userChoice}, {player2Name} chose{" "}
                 {result.computerChoice}, result:
-                <strong> {result.result} </strong>
+                <strong > {result.result} </strong>
               </li>
             ))}
           </>

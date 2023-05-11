@@ -1,8 +1,5 @@
 
 describe('The home page', () => {
-  it('It successfully load', () => {
-    cy.visit('http://127.0.0.1:5173/')
-  })
 
   it("Should player against the computer",()=>{
     cy.visit('http://127.0.0.1:5173/')
@@ -18,11 +15,11 @@ describe('The home page', () => {
     cy.get('#play_again').click()
     cy.get('#num_round_played').should("contain", 2 )
 
-    cy.get('#scissor').click()
+    cy.get('#scissors').click()
     cy.get('#play_again').click()
     cy.get('#num_round_played').should("contain", 3)
 
-
-
   })
+
+
 })
