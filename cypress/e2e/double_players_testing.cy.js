@@ -14,7 +14,7 @@
 describe('Two player game', () => {
 
     it("Should player against another user",()=>{
-      cy.visit('http://127.0.0.1:5173/')
+      cy.visit('http://localhost:5173/')
       cy.get('[data-id="player2-btn"]').click()
       cy.get('#player1').type("richard")
       cy.get("#player2").type("tobbe")
