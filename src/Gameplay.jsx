@@ -101,16 +101,11 @@ function Gameplay({ player1Name, player2Name }) {
 
 
   const PlayerChoice = (player) => <>
-
     <p>{player} turn</p>
     {
       roundsPlayed == 10 ?
-
         <p>You have played 10 rounds</p>
-
-
         :
-
         buttonsVisible == true ?
           choices.map((choice, index) =>
             <button
