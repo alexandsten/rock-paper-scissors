@@ -101,10 +101,10 @@ function Gameplay({ player1Name, player2Name }) {
 
 
   const PlayerChoice = (player) => <>
-    <p>{player} turn</p>
+    <p style={{color:"white"}}>{player} turn</p>
     {
       roundsPlayed == 10 ?
-        <p>You have played 10 rounds</p>
+        <p style={{color:"white"}}>You have played 10 rounds</p>
         :
         buttonsVisible == true ?
           choices.map((choice, index) =>
@@ -136,29 +136,36 @@ function Gameplay({ player1Name, player2Name }) {
 
   return (
     <div>
-      <div>
-        {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
-      </div>
+        <div id="gameplay">
+       <h3 style={{color:"white"}}> {player1Name} VS {player2Name}</h3>
+       <strong style={{color:"white"}} id="num_round_played">
+        Round: {roundsPlayed}
+      </strong>
+       <p  style={{color:"white"}}> {user1Score}{" "} {user2Score}  </p>
+       <h2 style={{color:"white"}}id="winner">{result}</h2>
+       <div id="gameplayavatars">
+       <img style={{ height: "60px", width: "60px" }} src="./src/img/ghost (2).png" />
+       <img style={{ height: "60px", width: "60px" }} src="./src/img/ghost (3).png" /> 
 
-      <h2 id="winner">{result}</h2>
-      <span>
+       </div>
+       <span>
         {result && (
           <button id="play_again" onClick={reset}>
             Play again!
           </button>
         )}
       </span>
-      <h2 id="user1_score">
-        {player1Name} score: {user1Score}{" "}
-      </h2>
-      <h2 id="user2_score">
-        {player2Name} score: {user2Score}
-      </h2>
-      <strong id="num_round_played">
-        Number of rounds played: {roundsPlayed}
-      </strong>
+      
+
+        </div>
+      <div>
+        {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
+      </div>
+
+    
+     
       <h2>Game Results:</h2>
-      <ul id="gameplayhistory">
+      <ul style={{color:"white"}} id="gameplayhistory">
         {gameResults.length > 0 && (
           <>
             {gameResults.map((result, index) => (
