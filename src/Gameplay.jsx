@@ -152,7 +152,7 @@ function Gameplay({ player1Name, player2Name }) {
     <>
 
       <div id="gameplay">
-        <strong style={{ color: "white" }}>{player1Name} {user1Score}:{user2Score} {player2Name}</strong>
+        <strong style={{ color: "white" }} id="users">{player1Name} {user1Score}:{user2Score} {player2Name}</strong>
         <strong id="num_round_played" style={{ color: "white" }}>
           Round:{roundsPlayed}
         </strong>

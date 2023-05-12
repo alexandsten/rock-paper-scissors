@@ -23,7 +23,7 @@ describe('Two player game', () => {
       cy.get("#rock").click()
       cy.get("#paper").click()
       cy.get("#winner").should("contain","tobbe WIN")
-      cy.get('#user2_score').should("contain","tobbe score: 1")
+      cy.get('#users').should("contain","richard 0:1 tobbe")
       cy.get('#num_round_played').should("contain", 1 )
       cy.get(".history_length").should("have.length", 1)
 
@@ -33,7 +33,7 @@ describe('Two player game', () => {
       cy.get("#scissors").click()
       cy.get("#paper").click()
       cy.get("#winner").should("contain","richard WIN")
-      cy.get('#user1_score').should("contain","richard score: 1")
+      cy.get('#users').should("contain","richard 1:1 tobbe")
       cy.get('#num_round_played').should("contain", 2 )
       cy.get(".history_length").should("have.length", 2)
         
@@ -42,8 +42,8 @@ describe('Two player game', () => {
       cy.get("#paper").click()
       cy.get("#paper").click()
       cy.get("#winner").should("contain","IT'S DRAW")
-      cy.get('#user1_score').should("contain","richard score: 1")
-      cy.get('#user2_score').should("contain","tobbe score: 1")
+      cy.get('#users').should("contain","richard 1:1 tobbe")
+      cy.get('#users').should("contain","richard 1:1 tobbe")
       cy.get('#num_round_played').should("contain", 3 )
       cy.get(".history_length").should("have.length", 3)
 
