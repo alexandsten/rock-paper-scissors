@@ -29,8 +29,8 @@ function App() {
         {numPlayers !== null && player1Name === '' && player2Name === '' && (
           <NameForm onSubmit={handleNameSubmit} numPlayers={numPlayers} />
       )}
-       {numPlayers === 1 && gameStarted && <h1> {player1Name} VS Computer</h1>}
-       {numPlayers === 2 && gameStarted && <h1> {player1Name} VS {player2Name}</h1>}
+       {numPlayers === 1 && gameStarted && <h2> {player1Name} VS Computer</h2>}
+       {numPlayers === 2 && gameStarted && <h2> {player1Name} VS {player2Name}</h2>}
         
        
         {numPlayers === 1 && gameStarted && <Gameplay player1Name={player1Name} player2Name={"_computer_"}/>}

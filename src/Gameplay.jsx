@@ -104,7 +104,7 @@ function Gameplay({ player1Name, player2Name }) {
     <p>{player} turn</p>
     {
       roundsPlayed == 10 ?
-        <p>You have played 10 rounds</p>
+        <p style={{color:"red"}}>You have played 10 rounds</p>
         :
         buttonsVisible == true ?
           choices.map((choice, index) =>
@@ -113,6 +113,7 @@ function Gameplay({ player1Name, player2Name }) {
               name={player}
               id={choice}
               onClick={() => handleClick(player, choice)}
+              style={{border: '1px solid limegreen', marginRight:"5px"}}
             >
               {choice}
             </button>
@@ -140,7 +141,7 @@ function Gameplay({ player1Name, player2Name }) {
         {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
       </div>
 
-      <h2 id="winner">{result}</h2>
+      <h4 id="winner">{result}</h4>
       <span>
         {result && (
           <button id="play_again" onClick={reset}>
@@ -148,16 +149,16 @@ function Gameplay({ player1Name, player2Name }) {
           </button>
         )}
       </span>
-      <h2 id="user1_score">
+      <h4 id="user1_score">
         {player1Name} score: {user1Score}{" "}
-      </h2>
-      <h2 id="user2_score">
+      </h4>
+      <h4 id="user2_score">
         {player2Name} score: {user2Score}
-      </h2>
+      </h4>
       <strong id="num_round_played">
         Number of rounds played: {roundsPlayed}
       </strong>
-      <h2>Game Results:</h2>
+      <h6>Game Results:</h6>
       <ul id="gameplayhistory">
         {gameResults.length > 0 && (
           <>
