@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import generateComputerChoice from "./Functions/ComputerChoice/generateComputerChoice";
 import Scores from "./Functions/Scores/Scores";
 import "./App.css";
+import { motion } from "framer-motion"
+import buttonSound from "./mp3/knapptryckmusik.mp3"
+
 
 function Gameplay({ player1Name, player2Name }) {
   const [user1Choice, setUser1Choice] = useState(null);
@@ -13,8 +16,13 @@ function Gameplay({ player1Name, player2Name }) {
   const [user2Score, setUser2Score] = useState(0);
   const [roundsPlayed, setRoundsPlayed] = useState(0);
   const [gameResults, setGameResults] = useState([]);
-  const choices = ["rock", "paper", "scissors"];
   const [buttonsVisible, setButtonsVisible] = useState(true)
+
+  const choices = ["rock", "paper", "scissors"];
+
+  const audio = new Audio(buttonSound);
+  audio.volume = 0.05;
+  
 
   useEffect(() => {
     setComputerChoice(generateComputerChoice(choices));
@@ -40,6 +48,7 @@ function Gameplay({ player1Name, player2Name }) {
 
 
   const handleClick = (player, value) => {
+    audio.play();
     setComputerChoice(generateComputerChoice(choices));
     if (player1Name == player) {
       setUser1Choice(value);
@@ -100,23 +109,27 @@ function Gameplay({ player1Name, player2Name }) {
   }
 
 
-  const PlayerChoice = (player) => <>
-    <p style={{color:"white"}}>{player} turn</p>
+  const PlayerChoice = (player, className) => <>
+    <p style={{ color: "white" }}>{player} turn</p>
     {
       roundsPlayed == 10 ?
-        <p style={{color:"red"}}>You have played 10 rounds</p>
+        <p style={{ color: "red" }}>You have played 10 rounds</p>
         :
         buttonsVisible == true ?
           choices.map((choice, index) =>
-            <button
+            <motion.img
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               key={index}
               name={player}
               id={choice}
               onClick={() => handleClick(player, choice)}
-              style={{border: '1px solid limegreen', marginRight:"5px"}}
+              className={className}
+              style={{ marginRight: "30px",marginLeft:"30px", color:"whit" }}
+              src={`../src/img/${choice}.png`}
             >
-              {choice}
-            </button>
+
+            </motion.img>
           )
           :
           <p> </p>
@@ -127,38 +140,54 @@ function Gameplay({ player1Name, player2Name }) {
 
   const forTwoPlayers = () => {
     if (user1Choice == null) {
-      return PlayerChoice(player1Name)
+      return PlayerChoice(player1Name, "first-btns")
     }
     else if (user1Choice !== null) {
-      return PlayerChoice(player2Name)
+      return PlayerChoice(player2Name, "second-btns")  
     }
   }
 
 
   return (
-    <div>
-      <div>
-        {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
+    <>
+
+      <div id="gameplay">
+        <strong style={{ color: "white" }}>{player1Name} {user1Score}:{user2Score} {player2Name}</strong>
+        <strong id="num_round_played" style={{ color: "white" }}>
+          Round:{roundsPlayed}
+        </strong>
+        <h4 id="winner">{result}</h4>
+        <div id="chardiv">
+          <motion.div animate={{ x: [0, -10, 0], transition: { duration: 0.8, repeat: Infinity } }}>
+            <img style={{ height: "60px", width: "60px", marginRight: "20px" }} src="../src/img/ghost (3).png" /> </motion.div>
+
+          <motion.div animate={{ x: [0, -10, 0], transition: { duration: 0.5, repeat: Infinity } }}>
+            <img style={{ height: "60px", width: "60px", marginRight: "20px" }} src="../src/img/ghost (2).png" /> </motion.div>
+        </div>
+
+
+
+
+
+        
+
+
       </div>
 
-      <h4 id="winner">{result}</h4>
-      <span>
+      <div id="buttoncontainers">
+        {player2Name !== null ? forTwoPlayers() : PlayerChoice(player1Name)}
+        <span>
         {result && (
           <button id="play_again" onClick={reset}>
             Play again!
           </button>
         )}
       </span>
-      <h4 id="user1_score">
-        {player1Name} score: {user1Score}{" "}
-      </h4>
-      <h4 id="user2_score">
-        {player2Name} score: {user2Score}
-      </h4>
-      <strong id="num_round_played">
-        Number of rounds played: {roundsPlayed}
-      </strong>
-      <h6>Game Results:</h6>
+      </div>
+     
+
+
+      <h6 style={{color: "white", marginTop: "40px",margin:0,marginRight:"70vh"}}>Game Results:</h6>
       <ul id="gameplayhistory">
         {gameResults.length > 0 && (
           <>
@@ -172,8 +201,8 @@ function Gameplay({ player1Name, player2Name }) {
           </>
         )}
       </ul>
-      <a href="App">Back</a>
-    </div>
+      <a style={{color:"white"}} href="App">Back</a>
+    </>
   );
 }
 

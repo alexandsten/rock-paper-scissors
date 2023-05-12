@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import PlayerSelect from './Components/PlayerSelect';
 import NameForm from './Components/NameForm';
-// import music from "./mp3/backgroundmusic.mp3";
+import music from "./mp3/backgroundmusic.mp3";
 
 import Gameplay from './Gameplay';
 import './App.css'
-const audio = new Audio();
+const audio = new Audio(music);
 audio.volume = 0.05;
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
   return (
       <div id="container">
         
-        {/* <audio src={music} autoPlay loop /> */}
+        <audio src={audio} autoPlay loop />
 
         <h1 style={{fontSize: "35px", color:"white"}}>Rock,Papper,Scissor</h1 >
         {numPlayers === null && <PlayerSelect onSelect={handlePlayerSelect} />}
